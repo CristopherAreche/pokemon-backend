@@ -84,7 +84,7 @@ const pokemonId = async (pokemonId) => {
 exports.searchPokemonById = async (req, res) => {
   try {
     const id = req.params.id;
-    then.pokemonId(id);
+    const pokemon = await pokemonId(id);
     res.status(200).send(pokemon);
   } catch (error) {
     console.error(error);

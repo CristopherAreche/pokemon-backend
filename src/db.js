@@ -10,6 +10,12 @@ const sequelize = new Sequelize("pokemon_ikip", USER, PASSWORD, {
   logging: false,
 });
 
+// LOCAL TEST
+// const sequelize = new Sequelize("pokemon", "postgres", "971215", {
+//   host: "localhost",
+//   dialect: "postgres",
+// });
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
