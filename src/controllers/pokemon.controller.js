@@ -81,14 +81,16 @@ const pokemonId = async (pokemonId) => {
   }
 };
 
-exports.searchPokemonById = (req, res) => {
+exports.searchPokemonById = async (req, res) => {
   try {
     const id = req.params.id;
     then.pokemonId(id);
     res.status(200).send(pokemon);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Ocurrió un error al buscar el Pokémon" });
+    res
+      .status(500)
+      .json({ error: "An error has occurred searching the pokemon by Id" });
   }
 };
 
