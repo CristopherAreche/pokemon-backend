@@ -12,21 +12,22 @@ const server = express();
 
 server.name = "API";
 
-const whitelist = [
-  "https://pokemon-backend-6ohr.onrender.com/",
-  "https://cristopherareche.github.io/pokemon-website/",
-  "http://localhost:3000",
-];
+// const whitelist = [
+//   "https://pokemon-backend-6ohr.onrender.com/",
+//   "https://cristopherareche.github.io/pokemon-website/",
+//   "http://localhost:3000",
+// ];
 server.use(
-  cors({
-    origin: (origin, cb) => {
-      if (whitelist.includes(origin)) {
-        cb(null, true);
-      } else {
-        cb(new Error("Not allowed by CORS"));
-      }
-    },
-  })
+  cors()
+  //   {
+  //   origin: (origin, cb) => {
+  //     if (whitelist.includes(origin)) {
+  //       cb(null, true);
+  //     } else {
+  //       cb(new Error("Not allowed by CORS"));
+  //     }
+  //   },
+  // }
 );
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
