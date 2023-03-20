@@ -15,6 +15,7 @@ server.name = "API";
 const whitelist = [
   "https://pokemon-backend-6ohr.onrender.com/",
   "https://cristopherareche.github.io/pokemon-website/",
+  "http://localhost:3000",
 ];
 server.use(
   cors({
