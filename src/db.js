@@ -14,6 +14,7 @@ const sequelize = new Sequelize("pokemon_ikip", USER, PASSWORD, {
 // const sequelize = new Sequelize("pokemon", "postgres", "971215", {
 //   host: "localhost",
 //   dialect: "postgres",
+//   logging: false,
 // });
 
 const basename = path.basename(__filename);

@@ -3,7 +3,7 @@ const { Router } = require("express");
 const {
   allPokemons,
   searchPokemonById,
-  filterPokemons,
+  filterPokemonsByName,
   newPokemon,
   deletePokemon,
   updatePokemon,
@@ -12,7 +12,7 @@ const {
 const pokemonRouter = Router();
 
 pokemonRouter.get("/", allPokemons);
-pokemonRouter.get("/search", filterPokemons);
+pokemonRouter.get("/search", filterPokemonsByName);
 pokemonRouter.get("/:id", searchPokemonById);
 pokemonRouter.post("/", newPokemon);
 

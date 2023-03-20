@@ -13,6 +13,11 @@ const returnUrl = async (url) => {
 };
 
 exports.allPokemons = async (req, res) => {
+  const pokemonDataFromDB = await Pokemon.findAll();
+  if (pokemonDataFromDB.length > 0) {
+    res.status(200).send(pokemonDataFromDB);
+    return;
+  }
   try {
     const apiData = await getPokemonsFromApi();
     const apiPokemons = await apiData.data.results.map((pokemon) => {
@@ -24,7 +29,7 @@ exports.allPokemons = async (req, res) => {
       return obj;
     });
     const pokemonHandler = async (req, res) => {
-      const pokemon = apiPokemons?.map(async (res) => {
+      const pokemonList = apiPokemons?.map(async (res) => {
         const urlInfo = await returnUrl(res.url);
         const pokemonData = {
           pokemonId: urlInfo.id ?? 12345,
@@ -40,13 +45,12 @@ exports.allPokemons = async (req, res) => {
         };
         return pokemonData;
       });
-      const pokemonData = Promise.all(pokemon);
+      const pokemonData = Promise.all(pokemonList);
       return pokemonData;
     };
     const data = await pokemonHandler();
-
-    const savedPokemons = await Pokemon.findAll();
-    const response = [...data, ...savedPokemons];
+    const pokeSaved = await Pokemon.bulkCreate(data);
+    const response = [...data, ...pokeSaved];
     res.status(200).send([response]);
   } catch (error) {
     res.send({ error: error.message });
@@ -94,7 +98,7 @@ exports.searchPokemonById = async (req, res) => {
   }
 };
 
-exports.filterPokemons = async (req, res) => {
+exports.filterPokemonsByName = async (req, res) => {
   try {
     const { name } = req.query;
     const response = await axios.get(
@@ -130,7 +134,9 @@ exports.filterPokemons = async (req, res) => {
 
 exports.newPokemon = async (req, res) => {
   try {
-    const response = await axios.get("http://localhost:3001/pokemons");
+    const response = await axios.get(
+      "https://pokemon-backend-6ohr.onrender.com/pokemons"
+    );
     const id = response.data[0][response.data[0].length - 1].pokemonId + 1;
     const {
       pokemonId,
