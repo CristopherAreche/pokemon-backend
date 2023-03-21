@@ -20,7 +20,7 @@ server.use(morgan("dev"));
 server.use((req, res, next) => {
   res.header(
     "Access-Control-Allow-Origin",
-    "https://pokemon-backend-6ohr.onrender.com"
+    "https://cristopherareche.github.io/pokemon-website/"
   ); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
