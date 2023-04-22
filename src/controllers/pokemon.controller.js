@@ -137,19 +137,9 @@ exports.newPokemon = async (req, res) => {
     const response = await axios.get(
       "https://pokemon-backend-6ohr.onrender.com/pokemons"
     );
-    const id = response.data[0][response.data[0].length - 1].pokemonId + 1;
-    const {
-      pokemonId,
-      name,
-      image,
-      hp,
-      attack,
-      defense,
-      speed,
-      height,
-      weight,
-      type,
-    } = req.body;
+    const id = response.data[response.data.length - 1]?.pokemonId + 1;
+    const { name, image, hp, attack, defense, speed, height, weight, type } =
+      req.body;
     const pokemon = Pokemon.create({
       pokemonId: id,
       name,
