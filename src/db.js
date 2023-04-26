@@ -3,7 +3,6 @@ const { Sequelize, DataTypes } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 const { USER, PASSWORD, HOST } = process.env;
-console.log("--->", USER);
 
 const sequelize = new Sequelize("pokemon_ikip", USER, PASSWORD, {
   host: HOST,
