@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
     {
       pokemonId: {
         primaryKey: true,
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         allowNull: false,
         unique: true,
       },

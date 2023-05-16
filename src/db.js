@@ -2,19 +2,18 @@ require("dotenv").config();
 const { Sequelize, DataTypes } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const { USER, PASSWORD, HOST } = process.env;
+const { DB_USER, DB_NAME, DB_PASSWORD, DB_HOST } = process.env;
 
-const sequelize = new Sequelize("pokemon_ikip", USER, PASSWORD, {
-  host: HOST,
-  dialect: "postgres",
-  logging: false,
-});
+const sequelize = new Sequelize(
+  `postgres://cristopher:2lTPaTpGW9V5hmLc5H2Z6mk8GsvJdgbI@dpg-cga8l14eoogtbduk6tug-a.oregon-postgres.render.com/pokemon_ikip?ssl=true`
+);
 
-// LOCAL TEST
+//LOCAL TEST
 // const sequelize = new Sequelize("pokemon", "postgres", "971215", {
 //   host: "localhost",
 //   dialect: "postgres",
 //   logging: false,
+//   port: 3001,
 // });
 
 const basename = path.basename(__filename);
