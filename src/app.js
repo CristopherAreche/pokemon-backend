@@ -12,7 +12,7 @@ const server = express();
 
 server.name = "API";
 
-server.use(cors());
+server.use(cors({origin:"*", methods:["GET", "POST"]}));
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
