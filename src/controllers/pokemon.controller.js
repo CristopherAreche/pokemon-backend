@@ -142,12 +142,12 @@ exports.newPokemon = async (req, res) => {
       pokemonId: id,
       name,
       image,
-      hp,
-      attack,
-      defense,
-      speed,
-      height,
-      weight,
+      hp: +hp,
+      attack: +attack,
+      defense: +defense,
+      speed: +speed,
+      height: +height,
+      weight: +weight,
       type,
     });
     if (
@@ -169,6 +169,6 @@ exports.newPokemon = async (req, res) => {
     }
     res.status(201).send("Successfully created");
   } catch (error) {
-    res.status(404).send({ error: error.message });
+    res.status(400).send({ error: error.message });
   }
 };
