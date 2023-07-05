@@ -5,7 +5,7 @@ const path = require("path");
 const { DB_USER, DB_NAME, DB_PASSWORD, DB_HOST } = process.env;
 
 const sequelize = new Sequelize(
-  `postgres://cristopher:2lTPaTpGW9V5hmLc5H2Z6mk8GsvJdgbI@dpg-cga8l14eoogtbduk6tug-a.oregon-postgres.render.com/pokemon_ikip?ssl=true`
+  `postgres://pokemon_db_j70b_user:VEgJCEl245aqj0U9HSZN66qP6XVhY2yB@dpg-ciido9t9aq012eqrdi5g-a.oregon-postgres.render.com/pokemon_db_j70b?ssl=true`
 );
 
 //LOCAL TEST
@@ -13,7 +13,7 @@ const sequelize = new Sequelize(
 //   host: "localhost",
 //   dialect: "postgres",
 //   logging: false,
-//   port: 3001,
+//   port: 5432,
 // });
 
 const basename = path.basename(__filename);
