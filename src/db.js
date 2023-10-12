@@ -5,7 +5,7 @@ const path = require("path");
 const { DB_USER, DB_NAME, DB_PASSWORD, DB_HOST } = process.env;
 
 const sequelize = new Sequelize(
-  `postgres://pokemon_db_j70b_user:VEgJCEl245aqj0U9HSZN66qP6XVhY2yB@dpg-ciido9t9aq012eqrdi5g-a.oregon-postgres.render.com/pokemon_db_j70b?ssl=true`
+  `postgres://pokemon_db_jj7c_user:7pViHU9yWDvCyaiowHEcZbnNINZbDcw8@dpg-ckjhficl4vmc73c87jg0-a/pokemon_db_jj7c`
 );
 
 //LOCAL TEST
