@@ -1,0 +1,1 @@
+{"version":3,"file":"getPokemonsFromApi.service.js","sourceRoot":"","sources":["../../../src/services/getPokemonsFromApi.service.ts"],"names":[],"mappings":";;;;;;AAAA,kDAA0B;AAEnB,MAAM,kBAAkB,GAAG,KAAK,IAAI,EAAE;IAC3C,MAAM,WAAW,GAAG,MAAM,eAAK,CAAC,GAAG,CACjC,6CAA6C,CAC9C,CAAC;IACF,OAAO,WAAW,CAAC;AACrB,CAAC,CAAC;AALW,QAAA,kBAAkB,sBAK7B"}
