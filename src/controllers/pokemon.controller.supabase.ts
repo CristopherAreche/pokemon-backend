@@ -53,7 +53,10 @@ export const allPokemons = async (req: Request, res: Response) => {
           const pokemonData: PokemonData = {
             pokemonId: urlInfo.id,
             name: pokemon.name,
-            image: urlInfo.sprites?.other?.dream_world?.front_default || undefined,
+            image: (urlInfo.sprites as any)?.other?.official_artwork?.front_default || 
+                   urlInfo.sprites?.other?.dream_world?.front_default || 
+                   (urlInfo.sprites as any)?.front_default ||
+                   `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${urlInfo.id}.png`,
             hp: urlInfo.stats[0]?.base_stat || 0,
             attack: urlInfo.stats[1]?.base_stat || 0,
             defense: urlInfo.stats[2]?.base_stat || 0,
@@ -114,7 +117,10 @@ export const searchPokemonById = async (req: Request, res: Response) => {
     const pokemon = {
       pokemonId: apiData.id,
       name: apiData.name,
-      image: apiData.sprites?.other?.dream_world?.front_default || undefined,
+      image: (apiData.sprites as any)?.other?.official_artwork?.front_default || 
+             apiData.sprites?.other?.dream_world?.front_default || 
+             (apiData.sprites as any)?.front_default ||
+             `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${apiData.id}.png`,
       hp: apiData.stats[0]?.base_stat || 0,
       attack: apiData.stats[1]?.base_stat || 0,
       defense: apiData.stats[2]?.base_stat || 0,
@@ -159,7 +165,10 @@ export const filterPokemonsByName = async (req: Request, res: Response) => {
       const pokemon = {
         pokemonId: apiData.id,
         name: apiData.name,
-        image: apiData.sprites?.other?.dream_world?.front_default || undefined,
+        image: (apiData.sprites as any)?.other?.official_artwork?.front_default || 
+             apiData.sprites?.other?.dream_world?.front_default || 
+             (apiData.sprites as any)?.front_default ||
+             `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${apiData.id}.png`,
         hp: apiData.stats[0]?.base_stat || 0,
         attack: apiData.stats[1]?.base_stat || 0,
         defense: apiData.stats[2]?.base_stat || 0,
