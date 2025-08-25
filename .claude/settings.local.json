@@ -11,7 +11,8 @@
       "Bash(touch:*)",
       "Bash(node:*)",
       "Bash(curl:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(npm start)"
     ],
     "deny": [],
     "ask": []

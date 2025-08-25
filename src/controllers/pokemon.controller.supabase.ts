@@ -26,7 +26,7 @@ export const allPokemons = async (req: Request, res: Response) => {
   try {
     // Check if we already have Pokemon in the database
     const { data: existingPokemons, error: fetchError } = await supabase
-      .from('pokemon')
+      .from('pokemons')
       .select('*');
 
     if (fetchError) {
@@ -53,7 +53,8 @@ export const allPokemons = async (req: Request, res: Response) => {
           const pokemonData: PokemonData = {
             pokemonId: urlInfo.id,
             name: pokemon.name,
-            image: (urlInfo.sprites as any)?.other?.official_artwork?.front_default || 
+            image: (urlInfo.sprites as any)?.other?.['official-artwork']?.front_default || 
+                   (urlInfo.sprites as any)?.other?.home?.front_default || 
                    urlInfo.sprites?.other?.dream_world?.front_default || 
                    (urlInfo.sprites as any)?.front_default ||
                    `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${urlInfo.id}.png`,
@@ -77,7 +78,7 @@ export const allPokemons = async (req: Request, res: Response) => {
 
     // Insert into Supabase
     const { data: insertedPokemons, error: insertError } = await supabase
-      .from('pokemon')
+      .from('pokemons')
       .insert(validPokemons)
       .select();
 
@@ -100,7 +101,7 @@ export const searchPokemonById = async (req: Request, res: Response) => {
 
     // First check database
     const { data: pokemonFromDB, error: dbError } = await supabase
-      .from('pokemon')
+      .from('pokemons')
       .select('*')
       .eq('pokemonId', id)
       .single();
@@ -117,7 +118,8 @@ export const searchPokemonById = async (req: Request, res: Response) => {
     const pokemon = {
       pokemonId: apiData.id,
       name: apiData.name,
-      image: (apiData.sprites as any)?.other?.official_artwork?.front_default || 
+      image: (apiData.sprites as any)?.other?.['official-artwork']?.front_default || 
+             (apiData.sprites as any)?.other?.home?.front_default || 
              apiData.sprites?.other?.dream_world?.front_default || 
              (apiData.sprites as any)?.front_default ||
              `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${apiData.id}.png`,
@@ -148,7 +150,7 @@ export const filterPokemonsByName = async (req: Request, res: Response) => {
 
     // Search in database first
     const { data: dbResults, error: dbError } = await supabase
-      .from('pokemon')
+      .from('pokemons')
       .select('*')
       .ilike('name', `%${name}%`);
 
@@ -165,7 +167,8 @@ export const filterPokemonsByName = async (req: Request, res: Response) => {
       const pokemon = {
         pokemonId: apiData.id,
         name: apiData.name,
-        image: (apiData.sprites as any)?.other?.official_artwork?.front_default || 
+        image: (apiData.sprites as any)?.other?.['official-artwork']?.front_default || 
+             (apiData.sprites as any)?.other?.home?.front_default || 
              apiData.sprites?.other?.dream_world?.front_default || 
              (apiData.sprites as any)?.front_default ||
              `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${apiData.id}.png`,
@@ -208,7 +211,7 @@ export const newPokemon = async (req: Request, res: Response) => {
     };
 
     const { data, error } = await supabase
-      .from('pokemon')
+      .from('pokemons')
       .insert(pokemon)
       .select()
       .single();
